@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Crud Form2</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+</head>
+<body ng-app="myApp">
+<div class="form-wrapper" ng-controller="myController as vm">
+	<div class="form-container">
+		<h2>{{vm.formTitle}}</h2>
+		<form name="generalForm" novalidate>
+		<div class="col-md-6">
+			<label>First Name</label>
+			<input name ="firstName" type="text" ng-model="vm.user.firstName" required>
+		</div>
+		<div class="col-md-6">
+			<label>Last Name</label>
+			<input name ="lastName" type="text" ng-model="vm.user.lastName" required>
+		</div>
+		<div class="col-md-6">
+			<label>Ph Number</label>
+			<input name="phoneNumber" type="number" ng-model="vm.user.phoneNumber"></input>
+		</div>
+		<div class="col-md-6">
+			<label>UserRole</label>
+			<select ng-model="vm.user.userRole">
+				<option>NSM</option>
+				<option>ASM</option>
+				<option>STL</option>
+				<option>DSE</option>
+				<option>VS</option>
+			</select>
+		</div>
+		<div class ="col-md-3">
+		<label><input type="checkbox" ng-click="vm.checkClick()" ng-checked="vm.male">Male</label></input>
+		</div>
+		<div class ="col-md-3">
+			<label><input ng-click="vm.checkClick()" ng-checked="vm.female" type="checkbox">Female</input></label>
+		</div>
+		<div class="col-md-6">
+			<label>{{'shampoo for' + ' ' + vm.gender}}</label>
+			<select ng-model="vm.user.shampoo">
+				<option ng-repeat="shampoo in vm.userShampoo">{{shampoo.title}}</option>
+				<!-- <option>{{userShampoo[2]}}</option> -->
+			</select>
+		</div>
+		<div class="clrfix"></div>
+		<div class="button-wrapper clrfix">
+			<button  class="submit-btn" ng-click="vm.submit(vm.user,'create')" ng-show="!vm.editActive"> Submit</button>
+			<button  class="btn ok" ng-click="vm.submit(vm.user,vm.user.id,'edit')" ng-show="vm.editActive">Ok</button>
+			<button  class="btn cancel" ng-click="vm.cancel(vm.copyUser)" ng-show="vm.editActive">Cancel</button>
+		</div>
+		</form>
+	</div>
+	<div class="form-output" ng-show="(vm.userArray).length" ng-repeat="user in vm.userArray" ng>
+		<p>{{ 'User ID:' + user.id }}</p>	
+		<p>{{ 'First Name:' + user.firstName }}</p>
+		<p>{{ 'Last Name:' + user.lastName }}</p>
+		<p>{{ 'User Role:' + user.userRole }}</p>
+		<p>{{ 'Shampoo:' + user.shampoo }}</p>
+		<p>{{ 'Phone Number:' + user.phoneNumber }}</p>
+		<button class=" btn edit" ng-click="vm.editForm(user)">Edit</button>		
+	</div>
+	<div class="form-container" ng-show="vm.editFormAcivated">
+		<h2> Edit Form</h2>
+		<form name="generalForm" novalidate>
+		<div class="col-md-6">
+			<label>First Name</label>
+			<input name ="firstName" type="text" ng-model="vm.user.firstName" required>
+		</div>
+		<div class="col-md-6">
+			<label>Last Name</label>
+			<input name ="lastName" type="text" ng-model="vm.user.lastName" required>
+		</div>
+		<div class="col-md-6">
+			<label>Ph Number</label>
+			<input name="phoneNumber" type="number" ng-model="vm.user.phoneNumber"></input>
+		</div>
+		<div class="col-md-6">
+			<label>UserRole</label>
+			<select ng-model="vm.user.userRole">
+				<option>NSM</option>
+				<option>ASM</option>
+				<option>STL</option>
+				<option>DSE</option>
+				<option>VS</option>
+			</select>
+		</div>
+		<div class ="col-md-3">
+		<label><input type="checkbox" ng-click="vm.checkClick()" ng-checked="vm.male">Male</label></input>
+		</div>
+		<div class ="col-md-3">
+			<label><input ng-click="vm.checkClick()" ng-checked="vm.female" type="checkbox">Female</input></label>
+		</div>
+		<div class="col-md-6">
+			<label>{{'shampoo for' + ' ' + vm.gender}}</label>
+			<select ng-model="vm.user.shampoo">
+				<option ng-repeat="shampoo in vm.userShampoo">{{shampoo.title}}</option>
+				<!-- <option>{{userShampoo[2]}}</option> -->
+			</select>
+		</div>
+		<div class="clrfix"></div>
+		<div class="button-wrapper clrfix">
+			<button  class="btn ok" ng-click="vm.submit(vm.user,vm.user.id,'edit')">Ok</button>
+			<button  class="btn cancel" ng-click="vm.cancel(vm.copyUser)">Cancel</button>
+		</div>
+		</form>
+	</div>
+		<!-- <div ng-repeat="user in vm.userArray">
+			{{user}}
+		</div> -->
+	
+	
+</div>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/controller2.js"></script>	
+</body>
+</html>
